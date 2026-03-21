@@ -1,5 +1,10 @@
 # Half-Life SDK builds for Xash3D Android (New Engine)
+<figure align="center">
+  <img src="https://github.com/user-attachments/assets/17b828c7-db76-4349-8748-42cac79d1ff0" alt="screenshot-debug-03-21-26.jpeg">
+  <figcaption><i>Included simple UI!</i></figcaption>
+</figure>
 
+<br> <b>Download</b>
 <table>
   <tr>
     <td width="130" align="center">
@@ -30,7 +35,7 @@
       </a>
     </td>
     <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Gravgun.apk"><b>Gravgun (also supports ar2, gateofbabylon)</b></a>
+      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Gravgun.apk"><b>Gravgun</b></a>
     </td>
   </tr>
 
