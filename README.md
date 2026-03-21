@@ -9,11 +9,11 @@
   <tr>
     <td width="130" align="center">
       <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Delta.Particles.apk">
-        <img src="https://github.com/user-attachments/assets/65ba7f33-8986-4a9d-97ec-f694d9bb88b3" width="128" height="128" />
+        <img src="https://github.com/user-attachments/assets/197f5145-633b-4e22-abde-34d031a694c5" width="128" height="128" />
       </a>
     </td>
     <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Delta.Particles.apk"><b>Delta Particles (not builded by me)</b></a>
+      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Delta.Particles.apk"><b>Delta Particles</b></a>
     </td>
   </tr>
 
@@ -68,7 +68,7 @@
       </a>
     </td>
     <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/QCLauncher.apk"><b>QCLauncher (Quake Champions Launcher)</b></a>
+      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/QCLauncher.apk"><b>QCLauncher (ThreeWave CTF and Deathmatch Classic Launcher)</b></a>
     </td>
   </tr>
 </table>
