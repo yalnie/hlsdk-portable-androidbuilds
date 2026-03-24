@@ -77,4 +77,4 @@
 > You need download [Xash3D FWGS](https://github.com/FWGS/xash3d-fwgs/releases/tag/continuous) apk.
 
 > [!TIP]
-> Also, you can request APKs from [Issues](https://github.com/blalalajsjsb/hlsdk-portable-androidbuilds/issues)!
+> Also, you can request APKs from [Issues](https://github.com/yalnie/hlsdk-portable-androidbuilds/issues/new?template=apk_request.yml)!
