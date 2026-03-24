@@ -1,0 +1,69 @@
+name: "APK Request"
+description: "Request an APK by selecting games or mods from the list."
+title: "[APK Request]: "
+labels: ["apk-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please select the games or mods you would like to have as an APK.
+
+  - type: checkboxes
+    id: game_selection
+    attributes:
+      label: "Which games/mods do you want an APK for?"
+      description: "You can select multiple options."
+      options:
+        - label: "abi2_prototype"
+        - label: "aghl"
+        - label: "aom"
+        - label: "aomdc"
+        - label: "asheep"
+        - label: "biglolly"
+        - label: "blackops"
+        - label: "bshift"
+        - label: "bubblemod"
+        - label: "CAd"
+        - label: "caseclosed"
+        - label: "clcampaign"
+        - label: "cracklife"
+        - label: "delta_particles"
+        - label: "dmc"
+        - label: "echoes"
+        - label: "eftd"
+        - label: "gravgun"
+        - label: "half-screwed"
+        - label: "half-secret"
+        - label: "halloween"
+        - label: "hl_urbicide"
+        - label: "hlfixed"
+        - label: "hltopdown"
+        - label: "induction_1.2"
+        - label: "mobile_hacks"
+        - label: "noffice"
+        - label: "opfor"
+        - label: "opforfixed"
+        - label: "poke646"
+        - label: "poke646_vendetta"
+        - label: "rebellion"
+        - label: "redempt"
+        - label: "residual_point"
+        - label: "RockCrowbar19"
+        - label: "sci"
+        - label: "sewer_beta"
+        - label: "sohl1.2"
+        - label: "thegate"
+        - label: "theyhunger"
+        - label: "tot"
+        - label: "visitors"
+        - label: "zombie-x"
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: "Confirmation"
+      options:
+        - label: "I requested APK for Xash3D New Engine."
+          required: true
+        - label: "I confirm that my request follows the repository rules."
+          required: true
