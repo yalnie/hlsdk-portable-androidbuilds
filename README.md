@@ -109,6 +109,16 @@
       <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Poke646.apk"><b>Poke646</b></a>
     </td>
   </tr>
+  <tr>
+    <td width="130" align="center">
+      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Poke646.Vendetta.apk">
+        <img src="https://github.com/user-attachments/assets/06c296b8-3d93-43dc-a255-091ceb99dcdf" width="128" height="128" />
+      </a>
+    </td>
+    <td valign="middle">
+      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Poke646.Vendetta.apk"><b>Poke646: Vendetta</b></a>
+    </td>
+  </tr>
 </table>
 
 > [!IMPORTANT]
