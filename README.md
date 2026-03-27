@@ -126,3 +126,5 @@
 
 > [!TIP]
 > Also, you can request APKs from [Issues](https://github.com/yalnie/hlsdk-portable-androidbuilds/issues/new?template=apk_request.yml)!
+>
+> You can request APKs from [hahayoutookind discord server](https://discord.gg/kBWCHAfFqA) too!
