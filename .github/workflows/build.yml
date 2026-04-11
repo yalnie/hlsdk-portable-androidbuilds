@@ -1,137 +1,129 @@
-name: build
+name: Branch (updated)
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - '**'
+      - '*.*'
+      - '*_*'
+  pull_request:
+    branches:
+      - '**'
+      - '*.*'
+      - '*_*'
+  workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
+  build-android:
+    runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        include:
-          - os: ubuntu-latest
-            cc: gcc
-            cxx: g++
-          - os: ubuntu-latest
-            cc: clang
-            cxx: clang++
-          - os: windows-latest
-            cc: cl
-            cxx: cl
-    env:
-      CC: ${{ matrix.cc }}
-      CXX: ${{ matrix.cxx }}
-      STEAMRT_SNAPSHOT: latest-steam-client-general-availability
+        arch:
+          - name: 'x86'
+            abi: 'x86'
+            android_abi: 'x86'
+          - name: 'armeabi-v7a (ARM32)'
+            abi: 'armeabi-v7a'
+            android_abi: 'armeabi-v7a'
+          - name: 'arm64-v8a (ARM64)'
+            abi: 'arm64-v8a'
+            android_abi: 'arm64-v8a'
+          - name: 'x86_64'
+            abi: 'x86_64'
+            android_abi: 'x86_64'
+
+    name: Build Android - ${{ matrix.arch.name }}
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-    - name: Checkout steam-runtime
-      if: startsWith(matrix.os, 'ubuntu')
-      uses: actions/checkout@v4
-      with:
-        repository: ValveSoftware/steam-runtime
-        path: steam-runtime
-    - name: Cache steam-runtime
-      if: startsWith(matrix.os, 'ubuntu')
-      id: cache-steam-runtime
-      uses: actions/cache@v4
-      with:
-        path: com.valvesoftware.SteamRuntime.Sdk-i386-scout-sysroot.tar.gz
-        key: steam-runtime-${{ env.STEAMRT_SNAPSHOT }}
-    - name: Download steam-runtime
-      if: startsWith(matrix.os, 'ubuntu') && steps.cache-steam-runtime.outputs.cache-hit != 'true'
-      run: wget --no-verbose https://repo.steampowered.com/steamrt-images-scout/snapshots/${{ env.STEAMRT_SNAPSHOT }}/com.valvesoftware.SteamRuntime.Sdk-i386-scout-sysroot.tar.gz
-    - name: Install steam runtime
-      if: startsWith(matrix.os, 'ubuntu')
-      run: |
-        sudo apt update
-        ./steam-runtime/setup_chroot.sh --i386 --tarball ./com.valvesoftware.SteamRuntime.Sdk-i386-scout-sysroot.tar.gz
-        sudo sed -i 's/groups=sudo/groups=adm/g' /etc/schroot/chroot.d/steamrt_scout_i386.conf
+      - name: Set up Android NDK
+        uses: nttld/setup-ndk@v1.5.0
+        with:
+          ndk-version: r29
+          link-to-sdk: true
 
-    - name: Build on Linux
-      if: startsWith(matrix.os, 'ubuntu')
-      run: |
-        schroot --chroot steamrt_scout_i386 -- cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DPOLLY=ON -B build -S . -DCMAKE_EXE_LINKER_FLAGS="-Wl,--no-undefined" -DCMAKE_INSTALL_PREFIX="$PWD/dist"
-        schroot --chroot steamrt_scout_i386 -- cmake --build build --target all
-        schroot --chroot steamrt_scout_i386 -- cmake --build build --target install
-    - name: Build on Linux with vgui
-      if: startsWith(matrix.os, 'ubuntu') && startsWith(matrix.cc, 'gcc')
-      run: |
-        schroot --chroot steamrt_scout_i386 -- cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DPOLLY=ON -B build-vgui -S . -DCMAKE_EXE_LINKER_FLAGS="-Wl,--no-undefined" -DUSE_VGUI=ON -DCMAKE_INSTALL_PREFIX="$PWD/dist-vgui"
-        cp vgui_support/vgui-dev/lib/vgui.so build-vgui/cl_dll
-        cp vgui_support/vgui-dev/lib/vgui.so build-vgui
-        schroot --chroot steamrt_scout_i386 -- cmake --build build-vgui --target all
-        schroot --chroot steamrt_scout_i386 -- cmake --build build-vgui --target install
+      - name: Set up CMake
+        uses: jwlawson/actions-setup-cmake@v2.0.2
+        with:
+          cmake-version: '4.3.1'
 
-    - name: Set developer command prompt for Windows x86
-      if: startsWith(matrix.os, 'windows')
-      uses: ilammy/msvc-dev-cmd@v1
-      with:
-        arch: x86
+      - name: Create build directory
+        run: mkdir -p build-${{ matrix.arch.abi }}
 
-    - name: Build on Windows
-      if: startsWith(matrix.os, 'windows')
-      run: |
-        cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -B build -S . -DCMAKE_INSTALL_PREFIX="dist"
-        cmake --build build --target all
-        cmake --build build --target install
-    - name: Build on Windows with vgui
-      if: startsWith(matrix.os, 'windows')
-      run: |
-        cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -B build -S . -DUSE_VGUI=ON -DCMAKE_INSTALL_PREFIX="dist-vgui"
-        cmake --build build --target all
-        cmake --build build --target install
+      - name: Configure CMake for Android ${{ matrix.arch.name }}
+        run: |
+          cd build-${{ matrix.arch.abi }}
+          cmake -G "Unix Makefiles" \
+            -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+            -DANDROID_ABI=${{ matrix.arch.android_abi }} \
+            -DANDROID_PLATFORM=android-21 \
+            -DANDROID_STL=c++_static \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPOLLY=ON \
+            -DBUILD_CLIENT=ON \
+            -DBUILD_SERVER=ON \
+            ..
 
-    - name: Set developer command prompt for Windows x86_64
-      if: startsWith(matrix.os, 'windows')
-      uses: ilammy/msvc-dev-cmd@v1
-      with:
-        arch: x64
-    - name: Build on Windows x64
-      if: startsWith(matrix.os, 'windows')
-      run: |
-        cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -B build64 -S . -DCMAKE_INSTALL_PREFIX="dist64" -D64BIT=ON
-        cmake --build build64 --target all
-        cmake --build build64 --target install
+      - name: Build for Android ${{ matrix.arch.name }}
+        run: |
+          cd build-${{ matrix.arch.abi }}
+          cmake --build . -j$(nproc)
 
-    - name: Extract branch name
-      shell: bash
-      run: echo "branch=$(echo ${GITHUB_REF#refs/heads/} | tr '/' '_')" >> $GITHUB_OUTPUT
-      id: extract_branch
-    - name: Extract gamedir
-      shell: bash
-      run: echo "gamedir=$(grep build/CMakeCache.txt -Ee 'GAMEDIR:STRING=[a-z]+' | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
-      id: extract_gamedir
-    - name: Upload linux artifact
-      if: startsWith(matrix.os, 'ubuntu') && matrix.cc == 'gcc'
-      uses: actions/upload-artifact@v4
-      with:
-        name: hlsdk-${{ steps.extract_branch.outputs.branch }}-linux
-        path: dist/${{ steps.extract_gamedir.outputs.gamedir }}
-    - name: Upload linux artifact with vgui
-      if: startsWith(matrix.os, 'ubuntu') && matrix.cc == 'gcc'
-      uses: actions/upload-artifact@v4
-      with:
-        name: hlsdk-${{ steps.extract_branch.outputs.branch }}-linux-vgui
-        path: dist-vgui/${{ steps.extract_gamedir.outputs.gamedir }}
-    - name: Upload windows artifact
-      if: startsWith(matrix.os, 'windows')
-      uses: actions/upload-artifact@v4
-      with:
-        name: hlsdk-${{ steps.extract_branch.outputs.branch }}-windows
-        path: dist/${{ steps.extract_gamedir.outputs.gamedir }}
-    - name: Upload windows x64 artifact
-      if: startsWith(matrix.os, 'windows')
-      uses: actions/upload-artifact@v4
-      with:
-        name: hlsdk-${{ steps.extract_branch.outputs.branch }}-windows_x64
-        path: dist64/${{ steps.extract_gamedir.outputs.gamedir }}
-    - name: Upload windows artifact with vgui
-      if: startsWith(matrix.os, 'windows')
-      uses: actions/upload-artifact@v4
-      with:
-        name: hlsdk-${{ steps.extract_branch.outputs.branch }}-windows-vgui
-        path: dist-vgui/${{ steps.extract_gamedir.outputs.gamedir }}
+      - name: List build artifacts
+        if: success()
+        run: |
+          echo "Build artifacts for ${{ matrix.arch.name }}:"
+          find build-${{ matrix.arch.abi }} -type f \( -name "*.so" -o -name "*.a" \) -exec ls -lh {} \;
 
+      - name: Upload artifacts for ${{ matrix.arch.name }}
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-${{ matrix.arch.abi }}-artifacts
+          path: |
+            build-${{ matrix.arch.abi }}/cl_dll/*.so
+            build-${{ matrix.arch.abi }}/dlls/*.so
+          retention-days: 30
+
+      - name: Generate build summary
+        if: always()
+        run: |
+          echo "## Build Summary for ${{ matrix.arch.name }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Architecture:** ${{ matrix.arch.name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**ABI:** ${{ matrix.arch.android_abi }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+
+  build-summary:
+    needs: build-android
+    runs-on: ubuntu-latest
+    if: always()
+    name: Build Summary
+
+    steps:
+      - name: Create build summary
+        run: |
+          echo "# Android Multi-Architecture Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Build Status" >> $GITHUB_STEP_SUMMARY
+          echo "- **Overall Status:** ${{ needs.build-android.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Architectures Built" >> $GITHUB_STEP_SUMMARY
+          echo "- x86" >> $GITHUB_STEP_SUMMARY
+          echo "- x86_64" >> $GITHUB_STEP_SUMMARY
+          echo "- armeabi-v7a (ARM32)" >> $GITHUB_STEP_SUMMARY
+          echo "- arm64-v8a (ARM64)" >> $GITHUB_STEP_SUMMARY
+
+      - name: List all built artifacts
+        if: success()
+        run: |
+          echo "## All Built Artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          find all-artifacts -type f -name "*.so" -o -name "*.a" | while read file; do
+            echo "- \`$(basename $file)\` ($(du -h "$file" | cut -f1))" >> $GITHUB_STEP_SUMMARY
+          done
