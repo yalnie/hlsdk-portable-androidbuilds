@@ -1,6 +1,6 @@
 /***
 *
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
+*	Copyright (c) 1996-2001, Valve LLC. All rights reserved.
 *	
 *	This product contains software technology licensed from Id 
 *	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
@@ -15,17 +15,17 @@
 //=========================================================
 // Hornets
 //=========================================================
+
 #pragma once
-#if !defined(HORNET_H)
-#define HORNET_H
+
 //=========================================================
 // Hornet Defines
 //=========================================================
-#define HORNET_TYPE_RED			0
-#define HORNET_TYPE_ORANGE		1
-#define HORNET_RED_SPEED		(float)600
-#define HORNET_ORANGE_SPEED		(float)800
-#define	HORNET_BUZZ_VOLUME		(float)0.8
+#define HORNET_TYPE_RED 0
+#define HORNET_TYPE_ORANGE 1
+#define HORNET_RED_SPEED (float)600
+#define HORNET_ORANGE_SPEED (float)800
+#define HORNET_BUZZ_VOLUME (float)0.8
 
 extern int iHornetPuff;
 
@@ -35,26 +35,25 @@ extern int iHornetPuff;
 class CHornet : public CBaseMonster
 {
 public:
-	void Spawn( void );
-	void Precache( void );
-	int Classify( void );
-	int IRelationship( CBaseEntity *pTarget );
-	virtual int Save( CSave &save );
-	virtual int Restore( CRestore &restore );
+	void Spawn() override;
+	void Precache() override;
+	int Classify() override;
+	int IRelationship(CBaseEntity* pTarget) override;
+	bool Save(CSave& save) override;
+	bool Restore(CRestore& restore) override;
 	static TYPEDESCRIPTION m_SaveData[];
 
-	void IgniteTrail( void );
-	void EXPORT StartTrack( void );
-	void EXPORT StartDart( void );
-	void EXPORT TrackTarget( void );
-	void EXPORT TrackTouch( CBaseEntity *pOther );
-	void EXPORT DartTouch( CBaseEntity *pOther );
-	void EXPORT DieTouch( CBaseEntity *pOther );
+	void IgniteTrail();
+	void EXPORT StartTrack();
+	void EXPORT StartDart();
+	void EXPORT TrackTarget();
+	void EXPORT TrackTouch(CBaseEntity* pOther);
+	void EXPORT DartTouch(CBaseEntity* pOther);
+	void EXPORT DieTouch(CBaseEntity* pOther);
 
-	int TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, float flDamage, int bitsDamageType );
+	bool TakeDamage(entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType) override;
 
 	float m_flStopAttack;
 	int m_iHornetType;
 	float m_flFlySpeed;
 };
-#endif // HORNET_H

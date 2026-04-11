@@ -1,130 +1,72 @@
-# Half-Life SDK builds for Xash3D Android (New Engine)
-<figure align="center">
-  <img src="https://github.com/user-attachments/assets/17b828c7-db76-4349-8748-42cac79d1ff0" alt="screenshot-debug-03-21-26.jpeg">
-  <figcaption><i>Included simple UI!</i></figcaption>
-</figure>
+------------------------------------------------
+HALF-LIFE: INSECURE
+Version 1.5
+Source Code
+------------------------------------------------
 
-<br> <b>Download</b>
-<table>
-  <tr>
-    <td width="130" align="center">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Delta.Particles.apk">
-        <img src="https://github.com/user-attachments/assets/037023c2-af6f-45c5-8fec-140808f2e6f7" width="128" height="128" />
-      </a>
-    </td>
-    <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Delta.Particles.apk"><b>Delta Particles</b></a>
-    </td>
-  </tr>
+This is the code used in HL: Insecure version 1.5.
+Forked from TWHL-Community Half-Life Updated SDK, 
+as well as others. Ready to compile for Windows
+and Linux.
 
-  <tr>
-    <td width="130" align="center">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/OFLauncher.apk">
-        <img src="https://github.com/user-attachments/assets/f07455ad-47b1-45ed-aa04-9e4aeafc5d56" width="128" height="128" />
-      </a>
-    </td>
-    <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/OFLauncher.apk"><b>OFLauncher (Opposing Force Launcher)</b></a>
-    </td>
-  </tr>
+------------------------------------------------
+HOW TO USE:
+------------------------------------------------
 
-  <tr>
-    <td width="130" align="center">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Gravgun.apk">
-        <img src="https://github.com/user-attachments/assets/0d6bcdbc-7cf1-480f-8f33-ea016164e46d" width="128" height="128" />
-      </a>
-    </td>
-    <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Gravgun.apk"><b>Gravgun (you need download data)</b></a>
-    </td>
-  </tr>
+Windows:
 
-  <tr>
-    <td width="130" align="center">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/BSLauncher.apk">
-        <img src="https://github.com/user-attachments/assets/be61e59a-0e36-4cf3-b49e-d7192931627b" width="128" height="128" />
-      </a>
-    </td>
-    <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/BSLauncher.apk"><b>BSLauncher (Blue Shift Launcher)</b></a>
-    </td>
-  </tr>
-  <tr>
-    <td width="130" align="center">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Bubblemod.apk">
-        <img src="https://github.com/user-attachments/assets/869efe4e-cfad-4fa5-9d36-86a149b6ce4b" width="128" height="128" />
-      </a>
-    </td>
-    <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Bubblemod.apk"><b>Bubblemod</b></a>
-    </td>
-  </tr>
-  <tr>
-    <td width="130" align="center">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/QCLauncher.Test.apk">
-        <img src="https://github.com/user-attachments/assets/ed291c08-04a1-4939-a0fc-8b58cb7d398b" width="128" height="128" />
-      </a>
-    </td>
-    <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/QCLauncher.Test.apk"><b>QCLauncher (Extremely broken ThreeWave CTF and Deathmatch Classic Launcher)</b></a>
-    </td>
-  </tr>
-  <tr>
-    <td width="130" align="center">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/CSLauncher.apk">
-        <img src="https://github.com/user-attachments/assets/e5fe4212-b0c8-4218-b05b-8145eecefe32" width="128" height="128" />
-      </a>
-    </td>
-    <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/CSLauncher.apk"><b>CSLauncher</b></a>
-    </td>
-  </tr>
-  <tr>
-    <td width="130" align="center">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/IntenseForce.apk">
-        <img src="https://github.com/user-attachments/assets/5c6b3e62-8df8-4571-993e-4a6aea94bb6b" width="128" height="128" />
-      </a>
-    </td>
-    <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/IntenseForce.apk"><b>Intense Force</b></a>
-    </td>
-  </tr>
-  <tr>
-    <td width="130" align="center">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Featureful.apk">
-        <img src="https://github.com/user-attachments/assets/27693ca4-8ce2-4e20-b241-6cea8515428b" width="128" height="128" />
-      </a>
-    </td>
-    <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Featureful.apk"><b>Featureful</b></a>
-    </td>
-  </tr>
-  <tr>
-    <td width="130" align="center">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Poke646.apk">
-        <img src="https://github.com/user-attachments/assets/06c296b8-3d93-43dc-a255-091ceb99dcdf" width="128" height="128" />
-      </a>
-    </td>
-    <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Poke646.apk"><b>Poke646</b></a>
-    </td>
-  </tr>
-  <tr>
-    <td width="130" align="center">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Poke646.Vendetta.apk">
-        <img src="https://github.com/user-attachments/assets/06c296b8-3d93-43dc-a255-091ceb99dcdf" width="128" height="128" />
-      </a>
-    </td>
-    <td valign="middle">
-      <a href="https://github.com/yalnie/hlsdk-portable-androidbuilds/releases/download/apk-builds/Poke646.Vendetta.apk"><b>Poke646: Vendetta</b></a>
-    </td>
-  </tr>
-</table>
+- Download Visual Studio Community 2026 through the
+Windows store or Microsoft website.
+(https://visualstudio.microsoft.com/downloads/)
 
-> [!IMPORTANT]
-> You need download [Xash3D FWGS](https://github.com/FWGS/xash3d-fwgs/releases/tag/continuous) apk.
+- Then at the installer, select the following components:
+  MSVC Build Tools for x64/x86 
+  Windows 11 SDK.
+  
+- After finishing the installation, it should be
+ready to use.
 
-> [!TIP]
-> Also, you can request APKs from [Issues](https://github.com/yalnie/hlsdk-portable-androidbuilds/issues/new?template=apk_request.yml)!
->
-> You can request APKs from [hahayoutookind discord server](https://discord.gg/kBWCHAfFqA) too!
+- The compiled binaries are located in the default
+Half-Life folder through Steam.
+(C:\Program Files (x86)\Steam\steamapps\common\Half-Life\insecure)
+
+Linux:
+
+This is only applicable for Ubuntu/Debian 22.04, you
+may have to look for similar commands based in your 
+distro.
+
+- Open your terminal, and use the commands listed below:
+sudo apt-get install git
+sudo apt-get install build-essential gcc-multilib g++-multilib libgl1-mesa-dev
+
+- Once finished, select the "gendbg.sh" script and 
+give it permission to run, otherwise it will fail
+to compile.
+
+- Then, open your terminal at the "linux" folder 
+and type "make".
+
+WARNING: You might encounter an "could not load library"
+error after compiling, this usually occurs when compiling
+with Ubuntu/Debian distros after 22.04. In which case,
+look at the following link:
+(https://twhl.info/wiki/page/Half-Life_Programming_-_Debugging#Debugging__could_not_load_library_client__errors)
+
+------------------------------------------------
+USED CODE FROM:
+------------------------------------------------
+
+- TWHL-Community Half-Life Updated SDK:
+(https://github.com/twhl-community/halflife-updated)
+
+- TWHL-Community Opposing Force Updated SDK:
+(https://github.com/twhl-community/halflife-op4-updated)
+
+- TWHL-Community Blue Shift Updated SDK:
+(https://github.com/twhl-community/halflife-bs-updated)
+
+- Spirits of Half-Life v1.8 SDK
+(https://github.com/sohl-modders/Spirit-of-Half-Life-1.8)
+
+------------------------------------------------

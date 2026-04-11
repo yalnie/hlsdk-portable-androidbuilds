@@ -1,15 +1,11 @@
-//========= Copyright (c) 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
 // $NoKeywords: $
 //=============================================================================
 
-#ifndef VGUI_DEFAULTINPUTSIGNAL_H
-#define VGUI_DEFAULTINPUTSIGNAL_H
-#ifdef _WIN32
 #pragma once
-#endif
 
 #include "VGUI_InputSignal.h"
 
@@ -19,8 +15,8 @@ namespace vgui
 	class CDefaultInputSignal : public vgui::InputSignal
 	{
 	public:
-		virtual void cursorMoved( int x, int y, Panel *panel ) {}
-		virtual void cursorEntered( Panel *panel )						{}
+		virtual void cursorMoved(int x,int y,Panel* panel)				{}
+		virtual void cursorEntered(Panel* panel)						{}
 		virtual void cursorExited(Panel* panel)							{}
 		virtual void mousePressed(MouseCode code,Panel* panel)			{}
 		virtual void mouseDoublePressed(MouseCode code,Panel* panel)	{}
@@ -32,6 +28,3 @@ namespace vgui
 		virtual void keyFocusTicked(Panel* panel)						{}
 	};
 }
-
-
-#endif // VGUI_DEFAULTINPUTSIGNAL_H

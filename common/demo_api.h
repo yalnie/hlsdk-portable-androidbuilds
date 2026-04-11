@@ -12,16 +12,15 @@
 *   without written permission from Valve LLC.
 *
 ****/
+
 #pragma once
-#if !defined(DEMO_API_H)
-#define DEMO_API_H
 
 typedef struct demo_api_s
 {
-	int	(*IsRecording)( void );
-	int	(*IsPlayingback)( void );
-	int	(*IsTimeDemo)( void );
-	void	(*WriteBuffer)( int size, unsigned char *buffer );
+	int (*IsRecording)(void);
+	int (*IsPlayingback)(void);
+	int (*IsTimeDemo)(void);
+	void (*WriteBuffer)(int size, unsigned char* buffer);
 } demo_api_t;
 
-#endif//DEMO_API_H
+extern demo_api_t demoapi;

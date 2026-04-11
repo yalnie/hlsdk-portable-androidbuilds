@@ -1,24 +1,24 @@
-//========= Copyright (c) 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
 // $NoKeywords: $
 //=============================================================================
+
 #pragma once
-#ifndef VGUI_GRID_H
-#define VGUI_GRID_H
 
 #include "VGUI_Panel.h"
 
 namespace vgui
 {
+
 // The grid control simply manages a grid of panels. You can adjust column sizes and spacings and 
 // configure and fill the panels however you want.
 // To use this control, call SetDimensions, SetSpacing and fill the controls.
 class CGrid : public Panel
 {
 public:
-					CGrid();
+						CGrid();
 	virtual				~CGrid();
 
 	bool				SetDimensions(int xCols, int yRows);		// Set how many columns and rows in the grid.
@@ -64,6 +64,8 @@ public:
 	bool					getCellAtPoint(int worldX, int worldY, int &row, int &col);
 
 // Panel overrides.
+public:
+	
 	virtual void		paint();
 	virtual void		paintBackground();
 
@@ -72,8 +74,8 @@ protected:
 	class CGridEntry
 	{
 	public:
-			CGridEntry();
-			~CGridEntry();
+				CGridEntry();
+				~CGridEntry();
 		
 		Panel	*m_pPanel;
 
@@ -88,6 +90,9 @@ protected:
 	void				CalcColOffsets(int iStart);
 	void				CalcRowOffsets(int iStart);
 
+
+protected:
+
 	bool		m_bDirty;	// Set when controls will need to be repositioned.
 
 	int			m_xCols;
@@ -101,8 +106,8 @@ protected:
 	int			*m_ColOffsets;
 	int			*m_RowOffsets;
 	
-	CGridEntry	*m_GridEntries;	
+	CGridEntry	*m_GridEntries;
+	
 };
-}
-#endif // VGUI_GRID_H
 
+};

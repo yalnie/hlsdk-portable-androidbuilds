@@ -12,27 +12,25 @@
 *   without written permission from Valve LLC.
 *
 ****/
+
 #pragma once
-#if !defined(QFONT_H)
-#define QFONT_H
 
 // Font stuff
 
-#define NUM_GLYPHS		256
+#define NUM_GLYPHS 256
+// does not exist: // #include "basetypes.h"
 
 typedef struct
 {
-	short	startoffset;
-	short	charwidth;
+	short startoffset;
+	short charwidth;
 } charinfo;
 
 typedef struct qfont_s
 {
-	int	width, height;
-	int	rowcount;
-	int	rowheight;
-	charinfo	fontinfo[NUM_GLYPHS];
-	byte	data[4];
+	int width, height;
+	int rowcount;
+	int rowheight;
+	charinfo fontinfo[NUM_GLYPHS];
+	unsigned char data[4];
 } qfont_t;
-
-#endif//QFONT_H

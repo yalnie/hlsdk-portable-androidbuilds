@@ -1,6 +1,6 @@
-//========= Copyright (c) 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================
@@ -23,59 +23,12 @@
 #include "camera.h"
 #include "in_defs.h"
 #include "vgui_TeamFortressViewport.h"
-#include "vgui_ControlConfigPanel.h"
-
-namespace
-{
-
-class TexturePanel : public Panel, public ActionSignal
-{
-private:
-	int		 _bindIndex;
-	TextEntry	*_textEntry;
-public:
-	TexturePanel() : Panel( 0, 0, 256, 276 )
-	{
-		_bindIndex = 2700;
-		_textEntry = new TextEntry( "2700", 0, 0, 128, 20 );
-		_textEntry->setParent( this );
-		_textEntry->addActionSignal( this );
-	}
-
-	virtual bool isWithin( int x, int y )
-	{
-		return _textEntry->isWithin( x, y );
-	}
-
-	virtual void actionPerformed( Panel *panel )
-	{
-		char buf[256];
-
-		_textEntry->getText( 0, buf, 256 );
-		sscanf( buf, "%d", &_bindIndex);
-	}
-protected:
-	virtual void paintBackground()
-	{
-			Panel::paintBackground();
-			
-			int wide, tall;
-
-			getPaintSize( wide, tall );
-
-			drawSetColor( 0, 0, 255, 0 );
-			drawSetTexture( _bindIndex );
-			drawTexturedRect( 0, 19, 257, 257 );
-	}
-};
-
-}
 
 using namespace vgui;
 
-void VGui_ViewportPaintBackground( int extents[4] )
+void VGui_ViewportPaintBackground(int extents[4])
 {
-	gEngfuncs.VGui_ViewportPaintBackground( extents );
+	gEngfuncs.VGui_ViewportPaintBackground(extents);
 }
 
 void* VGui_GetPanel()
@@ -85,34 +38,30 @@ void* VGui_GetPanel()
 
 void VGui_Startup()
 {
-	Panel *root = (Panel*)VGui_GetPanel();
-	root->setBgColor( 128, 128, 0, 0 );
-	// root->setNonPainted( false );
-	// root->setBorder( new LineBorder() );
-	root->setLayout( new BorderLayout( 0 ) );
+	Panel* root = (Panel*)VGui_GetPanel();
+	root->setBgColor(128, 128, 0, 0);
+	//root->setNonPainted(false);
+	//root->setBorder(new LineBorder());
+	root->setLayout(new BorderLayout(0));
 
-	// root->getSurfaceBase()->setEmulatedCursorVisible( true );
 
-	if( gViewPort != NULL )
+	//root->getSurfaceBase()->setEmulatedCursorVisible(true);
+
+	if (gViewPort != NULL)
 	{
-//		root->removeChild( gViewPort );
+		//		root->removeChild(gViewPort);
 
 		// free the memory
-//		delete gViewPort;
-//		gViewPort = NULL;
+		//		delete gViewPort;
+		//		gViewPort = NULL;
 
 		gViewPort->Initialize();
 	}
 	else
 	{
-		gViewPort = new TeamFortressViewport( 0, 0, root->getWide(), root->getTall() );
-		gViewPort->setParent( root );
+		gViewPort = new TeamFortressViewport(0, 0, root->getWide(), root->getTall());
+		gViewPort->setParent(root);
 	}
-
-	/*
-	TexturePanel *texturePanel = new TexturePanel();
-	texturePanel->setParent( gViewPort );
-	*/
 }
 
 void VGui_Shutdown()
@@ -120,8 +69,3 @@ void VGui_Shutdown()
 	delete gViewPort;
 	gViewPort = NULL;
 }
-
-
-
-
-

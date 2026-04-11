@@ -12,16 +12,13 @@
 *   without written permission from Valve LLC.
 *
 ****/
+
 #pragma once
-#if !defined(STUDIO_EVENT_H)
-#define STUDIO_EVENT_H
 
 typedef struct mstudioevent_s
 {
-	int 		frame;
-	int		event;
-	int		type;
-	char		options[64];
+	int frame;
+	int event;
+	int type;
+	char options[64];
 } mstudioevent_t;
-
-#endif//STUDIO_EVENT_H

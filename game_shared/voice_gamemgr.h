@@ -1,16 +1,11 @@
-//========= Copyright (c) 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
 // $NoKeywords: $
 //=============================================================================
+
 #pragma once
-#ifndef VOICE_GAMEMGR_H
-#define VOICE_GAMEMGR_H
-
-#ifdef _WIN32
-#endif
-
 
 #include "voice_common.h"
 
@@ -68,6 +63,7 @@ private:
 	void				UpdateMasks();
 
 
+private:
 	int					m_msgPlayerVoiceMask;
 	int					m_msgRequestState;
 
@@ -75,6 +71,3 @@ private:
 	int					m_nMaxPlayers;
 	double				m_UpdateInterval;						// How long since the last update.
 };
-
-
-#endif // VOICE_GAMEMGR_H

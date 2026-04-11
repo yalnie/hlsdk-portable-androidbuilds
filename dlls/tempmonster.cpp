@@ -1,6 +1,6 @@
 /***
 *
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
+*	Copyright (c) 1996-2001, Valve LLC. All rights reserved.
 *	
 *	This product contains software technology licensed from Id 
 *	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
@@ -17,11 +17,11 @@
 //=========================================================
 #if 0
 
-#include	"extdll.h"
-#include	"util.h"
-#include	"cbase.h"
-#include	"monsters.h"
-#include	"schedule.h"
+#include "extdll.h"
+#include "util.h"
+#include "cbase.h"
+#include "monsters.h"
+#include "schedule.h"
 
 //=========================================================
 // Monster's Anim Events Go Here
@@ -30,20 +30,19 @@
 class CMyMonster : public CBaseMonster
 {
 public:
-	void Spawn( void );
-	void Precache( void );
-	void SetYawSpeed( void );
-	int  Classify ( void );
+	void Spawn();
+	void Precache();
+	void SetYawSpeed();
+	int  Classify ();
 	void HandleAnimEvent( MonsterEvent_t *pEvent );
 };
-
-LINK_ENTITY_TO_CLASS( my_monster, CMyMonster )
+LINK_ENTITY_TO_CLASS( my_monster, CMyMonster );
 
 //=========================================================
 // Classify - indicates this monster's place in the 
 // relationship table.
 //=========================================================
-int	CMyMonster :: Classify ( void )
+int	CMyMonster:: Classify ()
 {
 	return	CLASS_MY_MONSTER;
 }
@@ -52,7 +51,7 @@ int	CMyMonster :: Classify ( void )
 // SetYawSpeed - allows each sequence to have a different
 // turn rate associated with it.
 //=========================================================
-void CMyMonster :: SetYawSpeed ( void )
+void CMyMonster:: SetYawSpeed ()
 {
 	int ys;
 
@@ -70,7 +69,7 @@ void CMyMonster :: SetYawSpeed ( void )
 // HandleAnimEvent - catches the monster-specific messages
 // that occur when tagged animation frames are played.
 //=========================================================
-void CMyMonster :: HandleAnimEvent( MonsterEvent_t *pEvent )
+void CMyMonster:: HandleAnimEvent( MonsterEvent_t *pEvent )
 {
 	switch( pEvent->event )
 	{
@@ -84,7 +83,7 @@ void CMyMonster :: HandleAnimEvent( MonsterEvent_t *pEvent )
 //=========================================================
 // Spawn
 //=========================================================
-void CMyMonster :: Spawn()
+void CMyMonster:: Spawn()
 {
 	Precache( );
 
@@ -105,14 +104,14 @@ void CMyMonster :: Spawn()
 //=========================================================
 // Precache - precaches all resources this monster needs
 //=========================================================
-void CMyMonster :: Precache()
+void CMyMonster:: Precache()
 {
 	PRECACHE_SOUND("mysound.wav");
 
 	PRECACHE_MODEL("models/mymodel.mdl");
-}
+}	
 
 //=========================================================
 // AI Schedules Specific to this monster
 //=========================================================
-#endif //0
+#endif

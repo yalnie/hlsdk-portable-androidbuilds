@@ -1,4 +1,4 @@
-//========= Copyright (c) 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -18,6 +18,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <memory.h>
+#include <math.h>
 
 #include "studio_util.h"
 #include "r_studioint.h"
@@ -970,7 +972,7 @@ HUD_GetStudioModelInterface
 Export this function for the engine to use the studio renderer class to render objects.
 ====================
 */
-
+#define DLLEXPORT __declspec( dllexport )
 extern "C" int DLLEXPORT HUD_GetStudioModelInterface( int version, struct r_studio_interface_s **ppinterface, struct engine_studio_api_s *pstudio )
 {
 	if ( version != STUDIO_INTERFACE_VERSION )

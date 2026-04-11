@@ -16,6 +16,8 @@
 //  cl_dll.h
 //
 
+#pragma once
+
 // 4-23-98  JOHN
 
 //
@@ -25,42 +27,14 @@
 //		- Drawing the HUD graphics every frame
 //		- Handling the custum HUD-update packets
 //
-#pragma once
-#if !defined(CL_DLL_H)
-#define CL_DLL_H
-#include "build.h"
-typedef unsigned char byte;
-typedef unsigned short word;
-typedef float vec_t;
-// redefine
-//typedef int ( *pfnUserMsgHook )( const char *pszName, int iSize, void *pbuf );
 
-#include "util_vector.h"
+#include "Platform.h"
+
+typedef int (*pfnUserMsgHook)(const char* pszName, int iSize, void* pbuf);
+
+#include "mathlib.h"
 
 #include "../engine/cdll_int.h"
 #include "../dlls/cdll_dll.h"
 
-#if !XASH_WIN32
-#define _cdecl
-#endif
-#include "exportdef.h"
-#include <string.h>
-#include "safe_snprintf.h"
-#ifndef __restrict
-#define __restrict
-#endif
-#if !HAVE_STRLCPY
-extern "C" size_t strlcpy(char * __restrict dst, const char * __restrict src, size_t dsize);
-#endif
-#if !HAVE_STRLCAT
-extern "C" size_t strlcat(char * __restrict dst, const char * __restrict src, size_t dsize);
-#endif
-#if HAVE_CMATH
-#include <cmath>
-#else
-#include <math.h>
-#endif
 extern cl_enginefunc_t gEngfuncs;
-#include "../engine/mobility_int.h"
-extern mobile_engfuncs_t *gMobileEngfuncs;
-#endif

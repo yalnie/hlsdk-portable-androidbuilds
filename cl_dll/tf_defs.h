@@ -7,7 +7,8 @@
 *	All Rights Reserved.
 *
 ****/
-#if !defined(__TF_DEFS_H)
+
+#ifndef __TF_DEFS_H
 #define __TF_DEFS_H
 
 //===========================================================================
@@ -45,7 +46,7 @@
 // Debug Options
 //#define MAP_DEBUG                     // Debug for Map code. I suggest running in a hi-res
 										// mode and/or piping the output from the server to a file.
-#if MAP_DEBUG
+#ifdef MAP_DEBUG
 	#define MDEBUG(x) x
 #else
 	#define MDEBUG(x)
@@ -361,6 +362,7 @@ enum
 // Silent Spy Feign
 #define TF_SPY_SILENTDIE		199
 
+
 /*==================================================*/
 /* Defines for the ENGINEER's Building ability		*/
 /*==================================================*/
@@ -456,28 +458,28 @@ enum
 
 // HL-compatible weapon numbers
 #define WEAPON_HOOK				1
-#define WEAPON_BIOWEAPON		(WEAPON_HOOK + 1)
-#define WEAPON_MEDIKIT			(WEAPON_HOOK + 2)
-#define WEAPON_SPANNER			(WEAPON_HOOK + 3)
-#define WEAPON_AXE			(WEAPON_HOOK + 4)
-#define WEAPON_SNIPER_RIFLE		(WEAPON_HOOK + 5)
-#define WEAPON_AUTO_RIFLE		(WEAPON_HOOK + 6)
-#define WEAPON_TF_SHOTGUN		(WEAPON_HOOK + 7)
-#define WEAPON_SUPER_SHOTGUN		(WEAPON_HOOK + 8)
-#define WEAPON_NAILGUN			(WEAPON_HOOK + 9)
-#define WEAPON_SUPER_NAILGUN		(WEAPON_HOOK + 10)
-#define WEAPON_GRENADE_LAUNCHER		(WEAPON_HOOK + 11)
-#define WEAPON_FLAMETHROWER		(WEAPON_HOOK + 12)
-#define WEAPON_ROCKET_LAUNCHER		(WEAPON_HOOK + 13)
-#define WEAPON_INCENDIARY		(WEAPON_HOOK + 14)
-#define WEAPON_ASSAULT_CANNON		(WEAPON_HOOK + 16)
-#define WEAPON_LIGHTNING		(WEAPON_HOOK + 17)
-#define WEAPON_DETPACK			(WEAPON_HOOK + 18)
-#define WEAPON_TRANQ			(WEAPON_HOOK + 19)
-#define WEAPON_LASER			(WEAPON_HOOK + 20)
-#define WEAPON_PIPEBOMB_LAUNCHER 	(WEAPON_HOOK + 21)
-#define WEAPON_KNIFE			(WEAPON_HOOK + 22)
-#define WEAPON_BENCHMARK		(WEAPON_HOOK + 23)
+#define WEAPON_BIOWEAPON		(WEAPON_HOOK+1)
+#define WEAPON_MEDIKIT			(WEAPON_HOOK+2)
+#define WEAPON_SPANNER			(WEAPON_HOOK+3)
+#define WEAPON_AXE				(WEAPON_HOOK+4)
+#define WEAPON_SNIPER_RIFLE		(WEAPON_HOOK+5)
+#define WEAPON_AUTO_RIFLE		(WEAPON_HOOK+6)
+#define WEAPON_TF_SHOTGUN		(WEAPON_HOOK+7)
+#define WEAPON_SUPER_SHOTGUN	(WEAPON_HOOK+8)
+#define WEAPON_NAILGUN			(WEAPON_HOOK+9)
+#define WEAPON_SUPER_NAILGUN	(WEAPON_HOOK+10)
+#define WEAPON_GRENADE_LAUNCHER	(WEAPON_HOOK+11)
+#define WEAPON_FLAMETHROWER		(WEAPON_HOOK+12)
+#define WEAPON_ROCKET_LAUNCHER	(WEAPON_HOOK+13)
+#define WEAPON_INCENDIARY		(WEAPON_HOOK+14)
+#define WEAPON_ASSAULT_CANNON	(WEAPON_HOOK+16)
+#define WEAPON_LIGHTNING		(WEAPON_HOOK+17)
+#define WEAPON_DETPACK			(WEAPON_HOOK+18)
+#define WEAPON_TRANQ			(WEAPON_HOOK+19)
+#define WEAPON_LASER			(WEAPON_HOOK+20)
+#define WEAPON_PIPEBOMB_LAUNCHER (WEAPON_HOOK+21)
+#define WEAPON_KNIFE			(WEAPON_HOOK+22)
+#define WEAPON_BENCHMARK		(WEAPON_HOOK+23)
 
 /*==================================================*/
 /* New Weapon Related Defines		                */
@@ -507,7 +509,7 @@ enum
 // Detpack
 #define WEAP_DETPACK_DISARMTIME		3   	// Time it takes to disarm a Detpack
 #define WEAP_DETPACK_SETTIME		3   	// Time it takes to set a Detpack
-#define WEAP_DETPACK_SIZE		700	// Explosion Size
+#define WEAP_DETPACK_SIZE			700	 	// Explosion Size
 #define WEAP_DETPACK_GOAL_SIZE		1500 	// Explosion Size for goal triggering
 #define WEAP_DETPACK_BITS_NO		12  	// Bits that detpack explodes into
 
@@ -517,15 +519,15 @@ enum
 // Grenades
 #define GR_PRIMETIME		3
 #define GR_CALTROP_PRIME	0.5
-#define GR_TYPE_NONE		0
-#define GR_TYPE_NORMAL		1
-#define GR_TYPE_CONCUSSION	2
-#define GR_TYPE_NAIL		3
-#define GR_TYPE_MIRV		4
-#define GR_TYPE_NAPALM		5
-//#define GR_TYPE_FLARE		6
-#define GR_TYPE_GAS		7
-#define GR_TYPE_EMP		8
+#define GR_TYPE_NONE		0 
+#define GR_TYPE_NORMAL		1 
+#define GR_TYPE_CONCUSSION	2 
+#define GR_TYPE_NAIL		3 
+#define GR_TYPE_MIRV		4 
+#define GR_TYPE_NAPALM		5 
+//#define GR_TYPE_FLARE		6 
+#define GR_TYPE_GAS			7
+#define GR_TYPE_EMP			8
 #define GR_TYPE_CALTROP		9
 //#define GR_TYPE_FLASH		10
 
@@ -540,8 +542,8 @@ enum
 // Defines for Concussion Grenade
 #define GR_CONCUSS_TIME		0.25 
 #define GR_CONCUSS_DEC		10
-#define MEDIUM_PING		150
-#define HIGH_PING		200
+#define MEDIUM_PING			150
+#define HIGH_PING			200
 
 // Defines for the Gas Grenade
 #define GR_HALLU_TIME		0.3
@@ -549,7 +551,7 @@ enum
 #define GR_HALLU_DEC		2.5
 
 // Defines for the BioInfection
-#define BIO_JUMP_RADIUS		128	// The distance the bioinfection can jump between players
+#define BIO_JUMP_RADIUS 128		// The distance the bioinfection can jump between players
 
 /*==================================================*/
 /* New Items			                        	*/
@@ -1154,7 +1156,7 @@ float already_chosen_map;
 #define TS_PRINT_LONG				2
 #define TS_PRINT_LONG_TO_ALL		3
 
-#if !defined(TF_DEFS_ONLY)
+#ifndef TF_DEFS_ONLY
 
 typedef struct
 {
@@ -1380,5 +1382,8 @@ public:
 	void Spawn( void );
 	void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
 };
+
 #endif // TF_DEFS_ONLY
 #endif // __TF_DEFS_H
+
+
